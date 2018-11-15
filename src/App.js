@@ -1,28 +1,92 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { Auth } from 'aws-amplify'
+import Routes from './Routes'
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    isAuthenticated: false,
+    isAuthenticating: true
+  }
+
+  userHasAuthenticated = authenticated => {
+    this.setState({ isAuthenticated: authenticated })
+  }
+
+  async componentDidMount() {
+    try {
+      await Auth.currentSession()
+      this.userHasAuthenticated(true)
+    } catch (e) {
+      if (e !== 'No current user') {
+        alert(e)
+      }
+    }
+    this.setState({ isAuthenticating: false })
+  }
+
+  handleLogout = async () => {
+    await Auth.signOut()
+    this.userHasAuthenticated(false)
+    this.props.history.push('/login')
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    const childProps = {
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated
+    }
+
+    return !this.state.isAuthenticating ? (
+      <div>
+        <nav className="flex items-center justify-between flex-wrap bg-blue p-6">
+          <div className="flex items-center flex-no-shrink text-white mr-6">
+            <Link
+              to="/"
+              className="text-white no-underline font-semibold text-xl tracking-tight"
+            >
+              Notes App
+            </Link>
+          </div>
+          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto justify-end">
+            {!this.state.isAuthenticated ? (
+              <React.Fragment>
+                <div className="text-sm">
+                  <Link
+                    to="/signup"
+                    href="#responsive-header"
+                    className="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+                <div className="text-sm">
+                  <Link
+                    to="/login"
+                    href="#responsive-header"
+                    className="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
+                  >
+                    Log In
+                  </Link>
+                </div>
+              </React.Fragment>
+            ) : (
+              <div className="text-sm">
+                <span
+                  onClick={this.handleLogout}
+                  href="#responsive-header"
+                  className="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
+                >
+                  Log Out
+                </span>
+              </div>
+            )}
+          </div>
+        </nav>
+        <Routes childProps={childProps} />
       </div>
-    );
+    ) : null
   }
 }
 
-export default App;
+export default withRouter(App)
