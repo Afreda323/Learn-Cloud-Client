@@ -62,7 +62,6 @@ export default class Signup extends React.Component {
     try {
       await Auth.signIn(email, password)
       userHasAuthenticated(true)
-      history.push('/')
     } catch (e) {
       alert(e.message)
       this.setState({ isLoading: false })
@@ -74,12 +73,11 @@ export default class Signup extends React.Component {
     event.preventDefault()
     this.setState({ isLoading: true, error: null })
     const { email, password, confirmationCode } = this.state
-    const { userHasAuthenticated, history } = this.props
+    const { userHasAuthenticated } = this.props
     try {
       await Auth.confirmSignUp(email, confirmationCode)
       await Auth.signIn(email, password)
       userHasAuthenticated(true)
-      history.push('/')
     } catch (e) {
       this.setState({ error: e.message })
       this.setState({ isLoading: false })

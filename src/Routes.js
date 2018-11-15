@@ -7,15 +7,38 @@ import NotFound from './containers/NotFound'
 import NewNote from './containers/NewNote'
 import Notes from './containers/Notes'
 import AuthRoute from './components/AuthRoute'
+import ProtectedRoute from './components/ProtectedRoute'
+import UnProtectedRoute from './components/UnProtectedRoute'
 
 export default ({ childProps }) => {
   return (
     <Switch>
       <AuthRoute exact path="/" component={Home} props={childProps} />
-      <AuthRoute exact path="/login" component={Login} props={childProps} />
-      <AuthRoute exact path="/signup" component={Signup} props={childProps} />
-      <AuthRoute path="/notes/:id" exact component={Notes} props={childProps} />
-      <AuthRoute exact path="/newNote" component={NewNote} props={childProps} />
+      <UnProtectedRoute
+        path="/login"
+        exact
+        component={Login}
+        props={childProps}
+      />
+      <UnProtectedRoute
+        path="/signup"
+        exact
+        component={Signup}
+        props={childProps}
+      />
+      <ProtectedRoute
+        path="/newNote"
+        exact
+        component={NewNote}
+        props={childProps}
+      />
+      <ProtectedRoute
+        path="/notes/:id"
+        exact
+        component={Notes}
+        props={childProps}
+      />
+
       <Route component={NotFound} />
     </Switch>
   )

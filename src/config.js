@@ -1,7 +1,7 @@
 export default {
   s3: {
     REGION: 'us-east-2',
-    BUCKET: 'notes-app-antfreda'
+    BUCKET: 'notes-app-api-prod-attachmentsbucket-dcy5dtm4pavo'
   },
   apiGateway: {
     REGION: 'us-east-2',
@@ -9,9 +9,9 @@ export default {
   },
   cognito: {
     REGION: 'us-east-2',
-    USER_POOL_ID: 'us-east-2_4WhM6uX8A',
-    APP_CLIENT_ID: '5hpin1odhi2peptkj3k46fvqp8',
-    IDENTITY_POOL_ID: 'us-east-2:768cc976-b7a1-4075-81d5-ab5e36e9633b'
+    USER_POOL_ID: 'us-east-2_ZI95zGpri',
+    APP_CLIENT_ID: '1q6ka8i3ptj3l0t87fh60u700i',
+    IDENTITY_POOL_ID: 'us-east-2:1c5a84c0-b052-4c88-8ee1-499f21f44956'
   },
   MAX_ATTACHMENT_SIZE: 5000000,
 }

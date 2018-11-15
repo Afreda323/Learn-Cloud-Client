@@ -28,7 +28,6 @@ export default class Login extends React.Component {
     try {
       await Auth.signIn(this.state.email, this.state.password)
       this.props.userHasAuthenticated(true)
-      this.props.history.push('/')
     } catch (e) {
       this.setState({ isLoading: false, error: e.message })
     }

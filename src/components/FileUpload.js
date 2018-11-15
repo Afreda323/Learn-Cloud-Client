@@ -3,7 +3,7 @@ import React from 'react'
 export default ({ fileName, ...props }) => {
   return (
     <div className="overflow-hidden relative w-64">
-      <button className=" inline-flex items-center bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded">
+      <button onClick={e => e.preventDefault()} className=" inline-flex items-center bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded">
         <svg
           fill="#2779bd"
           height="18"
