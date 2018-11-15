@@ -102,7 +102,7 @@ export default class Signup extends React.Component {
                 placeholder="email"
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-4">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -112,7 +112,7 @@ export default class Signup extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-4">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input
                 id="confirmPassword"

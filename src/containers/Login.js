@@ -40,7 +40,7 @@ export default class Login extends React.Component {
         <div className="flex justify-center">
           <div className="w-full max-w-xs">
             <Form onSubmit={this.handleSubmit}>
-              <div className="mb-2">
+              <div className="mb-4">
                 <Label htmlFor="email">Email Address</Label>
                 <Input
                   autoFocus
@@ -51,7 +51,7 @@ export default class Login extends React.Component {
                   placeholder="email"
                 />
               </div>
-              <div className="mb-6">
+              <div className="mb-4">
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"

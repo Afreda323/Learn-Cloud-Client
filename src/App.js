@@ -37,6 +37,9 @@ class App extends React.Component {
       userHasAuthenticated: this.userHasAuthenticated
     }
 
+    const linkClass =
+      'no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4'
+
     return !this.state.isAuthenticating ? (
       <div>
         <nav className="flex items-center justify-between flex-wrap bg-blue p-6">
@@ -52,34 +55,32 @@ class App extends React.Component {
             {!this.state.isAuthenticated ? (
               <React.Fragment>
                 <div className="text-sm">
-                  <Link
-                    to="/signup"
-                    href="#responsive-header"
-                    className="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
-                  >
+                  <Link to="/signup" className={linkClass}>
                     Sign Up
                   </Link>
                 </div>
                 <div className="text-sm">
-                  <Link
-                    to="/login"
-                    href="#responsive-header"
-                    className="no-underline block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
-                  >
+                  <Link to="/login" className={linkClass}>
                     Log In
                   </Link>
                 </div>
               </React.Fragment>
             ) : (
-              <div className="text-sm">
-                <span
-                  onClick={this.handleLogout}
-                  href="#responsive-header"
-                  className="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-blue-lighter hover:text-white mr-4"
-                >
-                  Log Out
-                </span>
-              </div>
+              <React.Fragment>
+                <div className="text-sm">
+                  <Link to="/newNote" className={linkClass}>
+                    Add Note
+                  </Link>
+                </div>
+                <div className="text-sm">
+                  <span
+                    onClick={this.handleLogout}
+                    className={`cursor-pointer ${linkClass}`}
+                  >
+                    Log Out
+                  </span>
+                </div>
+              </React.Fragment>
             )}
           </div>
         </nav>
