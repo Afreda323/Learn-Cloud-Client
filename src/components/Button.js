@@ -16,6 +16,9 @@ export default ({ children, ...props }) => {
           props.red
             ? `bg-red 
           hover:bg-red-dark`
+            : props.green
+            ? `bg-green 
+          hover:bg-green-dark`
             : `bg-blue 
             hover:bg-blue-dark`
         }

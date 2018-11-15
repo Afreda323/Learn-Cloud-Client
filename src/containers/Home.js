@@ -2,6 +2,7 @@ import React from 'react'
 import { API } from 'aws-amplify'
 import ListGroup from '../components/ListGroup'
 import ListItem from '../components/ListItem'
+import Button from '../components/Button'
 
 export default class Home extends React.Component {
   state = {
@@ -38,14 +39,21 @@ export default class Home extends React.Component {
         ))
       : null
 
-  renderLander() {
-    return (
-      <div className="lander">
-        <h1>Scratch</h1>
-        <p>A simple note taking app</p>
+  renderLander = () => (
+    <div className="Home">
+      <div className="text-center mt-20">
+        <h1 className="text-black text-5xl mb-1 font-normal">Note App</h1>
+        <p className="text-grey-darker mb-4">A simple note taking app</p>
+        <Button onClick={() => this.props.history.push('/login')}>
+          Log In
+        </Button>
+        <span className='ml-2' />
+        <Button green onClick={() => this.props.history.push('/signup')}>
+          Sign Up
+        </Button>
       </div>
-    )
-  }
+    </div>
+  )
 
   renderNotes() {
     return (
