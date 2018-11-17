@@ -73,6 +73,11 @@ class App extends React.Component {
                   </Link>
                 </div>
                 <div className="text-sm">
+                  <Link to="/settings" className={linkClass}>
+                    Setttings
+                  </Link>
+                </div>
+                <div className="text-sm">
                   <span
                     onClick={this.handleLogout}
                     className={`cursor-pointer ${linkClass}`}

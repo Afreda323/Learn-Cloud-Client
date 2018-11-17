@@ -11,6 +11,7 @@ const Signup = lazy(() => import('./containers/Signup'))
 const NotFound = lazy(() => import('./containers/NotFound'))
 const NewNote = lazy(() => import('./containers/NewNote'))
 const Notes = lazy(() => import('./containers/Notes'))
+const Settings = lazy(() => import('./containers/Settings'))
 
 export default ({ childProps }) => {
   return (
@@ -41,7 +42,12 @@ export default ({ childProps }) => {
           component={Notes}
           props={childProps}
         />
-
+        <ProtectedRoute
+          path="/settings"
+          exact
+          component={Settings}
+          props={childProps}
+        />
         <Route component={NotFound} />
       </Switch>
     </Suspense>
